@@ -1,4 +1,6 @@
-# Hello Kubernetes!
+# Hello Kubernetes! (ARM edition)
+
+(Forked from https://github.com/paulbouwer/hello-kubernetes with ARM compatible Alpine)
 
 This image can be deployed on a Kubernetes cluster. It displays:
 - a default **Hello world!** message
@@ -13,7 +15,7 @@ The default port of 8080 can be overriden using the `PORT` environment variable.
 
 It is available on DockerHub as:
 
-- [paulbouwer/hello-kubernetes:1.5](https://hub.docker.com/r/paulbouwer/hello-kubernetes/)
+- [myoung34/armhf-hello-kubernetes:latest](https://hub.docker.com/r/myoung34/armhf-hello-kubernetes/)
 
 ## Deploy
 
@@ -52,7 +54,7 @@ spec:
     spec:
       containers:
       - name: hello-kubernetes
-        image: paulbouwer/hello-kubernetes:1.5
+        image: myoung34/armhf-hello-kubernetes:latest
         ports:
         - containerPort: 8080
 ```
@@ -64,7 +66,7 @@ $ kubectl apply -f yaml/hello-kubernetes.yaml
 Or, deploy by executing the following `run` and `expose` commands on `kubectl`. 
 
 ```bash
-$ kubectl run hello-kubernetes --replicas=3 --image=paulbouwer/hello-kubernetes:1.5 --port=8080
+$ kubectl run hello-kubernetes --replicas=3 --image=myoung34/armhf-hello-kubernetes:latest --port=8080
 $ kubectl expose deployment hello-kubernetes --type=LoadBalancer --port=80 --target-port=8080 --name=hello-kubernetes
 ```
 
@@ -113,7 +115,7 @@ spec:
     spec:
       containers:
       - name: hello-kubernetes
-        image: paulbouwer/hello-kubernetes:1.5
+        image: myoung34/armhf-hello-kubernetes:latest
         ports:
         - containerPort: 8080
         env:
@@ -128,7 +130,7 @@ $ kubectl apply -f yaml/hello-kubernetes.custom-message.yaml
 Or, deploy by executing the following `run` and `expose` commands on `kubectl`, with the environment variable `MESSAGE` provided as part of the `run` command.
 
 ```bash
-$ kubectl run hello-kubernetes --replicas=3 --image=paulbouwer/hello-kubernetes:1.5 --port=8080 --env="MESSAGE=I just deployed this on Kubernetes!"
+$ kubectl run hello-kubernetes --replicas=3 --image=myoung34/armhf-hello-kubernetes:latest --port=8080 --env="MESSAGE=I just deployed this on Kubernetes!"
 $ kubectl expose deployment hello-kubernetes --type=LoadBalancer --port=80 --target-port=8080 --name=hello-kubernetes
 ```
 
@@ -155,7 +157,7 @@ spec:
     spec:
       containers:
       - name: hello-kubernetes
-        image: paulbouwer/hello-kubernetes:1.5
+        image: armhf-hello-kubernetes:latest
         ports:
         - containerPort: 80
         env:
